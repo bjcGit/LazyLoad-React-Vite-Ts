@@ -1,5 +1,6 @@
 import { Navigate, NavLink, Route, Routes } from "react-router-dom"
 import { LazyOne, LazyThree, LazyTwo } from "../01-lazyload/pages"
+import { ShoppingPage } from "../pages/ShoppingPage/ShoppingPage"
 
 export const LazyLayout = () => {
   return (
@@ -22,6 +23,7 @@ export const LazyLayout = () => {
             <Route path="lazyone" element={ <LazyOne/> }/>
             <Route path="lazytwo" element={ <LazyTwo/> }/>
             <Route path="lazythree" element={ <LazyThree/> }/>
+            <Route path="shopping" element={ <ShoppingPage/> }/>
 
             {/* <Route path="*" element={ <span> No found </span>}/> */}
             <Route path="*" element={ <Navigate replace to={"lazyone"} />}/>
