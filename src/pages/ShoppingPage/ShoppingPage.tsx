@@ -1,9 +1,10 @@
-import { ProductButtons, ProductImg, ProductTitle } from "../../components"
-import { ProductCard} from "../../components/ProductCard"
+import { ProductButtons, ProductCard, ProductImg, ProductTitle } from "../../components"
+
 
 const product = {
   id: '1',
-  title: 'Coffee'
+  title: 'Coffee',
+  img: './coffee-mug.png'
 }
 
 export const ShoppingPage = () => {
@@ -16,19 +17,18 @@ export const ShoppingPage = () => {
         flexDirection: 'row',
         flexWrap: 'wrap'
       }}>
-
         <ProductCard product={product} >
           <ProductCard.Image/>
-          <ProductCard.Title title={product.title}/>
+          <ProductCard.Title title={'otra'} />
           <ProductCard.Buttons />
         </ProductCard>
 
         <ProductCard product={product} >
-          <ProductImg/>
-          <ProductTitle title={'Hola'}/>
+          <ProductImg />
+          <ProductTitle/>
           <ProductButtons />
         </ProductCard>
-    
+
       </div>
     </div>
   )

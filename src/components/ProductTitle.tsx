@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import styles from '../pages/styles/styles.module.css'
 import { ProductContext } from "./ProductCard"
+import styles from '../pages/styles/styles.module.css'
 
-export const ProductTitle = ({ title }: { title: string }) => {
+export const ProductTitle = ({ title }: { title?: string }) => {
 
     const { product } = useContext( ProductContext )
 
