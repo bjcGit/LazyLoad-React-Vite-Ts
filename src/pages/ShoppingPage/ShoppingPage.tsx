@@ -7,6 +7,12 @@ const product = {
   img: './coffee-mug.png'
 }
 
+const product2 = {
+  id: '2',
+  title: 'Coffee White',
+  img: './coffee-mug2.png'
+}
+
 export const ShoppingPage = () => {
   return (
     <div>
@@ -44,7 +50,18 @@ export const ShoppingPage = () => {
           <ProductButtons className="custom-buttons" />
         </ProductCard>
 
+        <ProductCard
+          product={product2}
+          className="bg-dark text-white"
+        >
+          <ProductImg className="custom-image" style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }} />
+          <ProductTitle className="text-bold" />
+          <ProductButtons className="custom-buttons" />
+        </ProductCard>
+
       </div>
+
+      
     </div>
   )
 }
