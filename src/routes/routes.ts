@@ -2,6 +2,7 @@ import { lazy, LazyExoticComponent } from "react"
 import { NoLazy } from "../no-found/NoLazy"
 import { ShoppingPage } from "../pages/ShoppingPage/ShoppingPage"
 import { ControlProps } from "../pages/ControlProps/ControlProps"
+import { Forms } from "../pages/Forms/Forms"
 // import { LazyThree, LazyTwo, LazyOne } from "../01-lazyload/pages";
 
 type JSXComponent = () => JSX.Element
@@ -41,6 +42,12 @@ export const routes: Route[] = [
         path: 'control',
         Component: ControlProps,
         name: 'Control Props'
+    },
+    {
+        to: './forms',
+        path: 'forms',
+        Component: Forms,
+        name: 'Forms'
     },
 
 ]
