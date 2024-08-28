@@ -1,55 +1,72 @@
-
-import { useFormik } from 'formik'
+import { Field, Form, ErrorMessage, Formik } from 'formik'
 import * as Yup from 'yup'
 import '../styles/styles.css'
 
 export const FormFormikComponents = () => {
 
-    const { handleSubmit, errors, touched, getFieldProps } = useFormik({
-        initialValues: {
-            name: '',
-            email: ''
-        },
-        onSubmit: (values) => {
-            console.log(values)
-        },
-        validationSchema: Yup.object({
-            name: Yup.string()
-                     .max(5, 'Debe de tener 5 caracteres o menos')
-                     .required('Requerido'),
-            email: Yup.string()
-                      .email('Debe de ser un email valido')
-                      .required('Requerido')
-        })   
-    })
-
     return (
         <div>
             <h1>Formik Yup Components</h1>
 
-            <form
-                noValidate
-                autoComplete='off'
-                onSubmit={handleSubmit}
-            >
-                <label htmlFor="firstName"> First Name</label>
-                <input
-                    type='text'
-                    autoComplete="new"
-                    {...getFieldProps('name')}
-                />
-                { touched.name && errors.name && <span>{ errors.name }</span> }
+            <Formik
+                initialValues={{
+                    name: '',
+                    email: '',
+                    terms: false,
+                    jobtype: ''
+                }}
+                onSubmit={(values) => {
+                    console.log(values)
+                }}
+                validationSchema={
+                    Yup.object({
+                        name: Yup.string()
+                            .max(5, 'Debe de tener 5 caracteres o menos')
+                            .required('Requerido'),
+                        email: Yup.string()
+                            .email('Debe de ser un email valido')
+                            .required('Requerido'),
+                        terms: Yup.boolean()
+                            .oneOf([true], 'Es necesario que aceptes las condiciones'),
+                        jobtype: Yup.string()
+                            .notOneOf(['Se'], 'No es permitida')
+                            .required('Requerido')
+                    })
+                }>
 
-                <label htmlFor="email"> Email</label>
-                <input
-                    type='email'
-                    autoComplete="new"
-                    {...getFieldProps('email')}                    
-                />
-                { touched.email && errors.email && <span>{ errors.email }</span> }               
+                {() => (
+                    <Form>
+                        <label htmlFor="firstName"> First Name</label>
+                        <Field type='text' autoComplete="new" name='name' />
+                        <ErrorMessage name='name' component={'span'} />
 
-                <button type='submit'>Crear</button>
-            </form>
+                        <label htmlFor="email"> Email</label>
+                        <Field type='text' autoComplete="new" name='email' />
+                        <ErrorMessage name='email' component={'span'} />
+
+                        <label> Job Type</label>
+                        <Field as='select' autoComplete="new" name='jobtype'>
+                            <option value={''}>-</option>
+                            <option value={'Ca'}>Ca</option>
+                            <option value={'Ye'}>Ye</option>
+                            <option value={'Se'}>Se</option>
+                        </Field>
+                        <ErrorMessage name='jobtype' component={'span'} />
+
+                        <label>
+                            <Field type='checkbox' name='terms' />
+                            Terms and conditions
+                        </label>
+                        <ErrorMessage name='terms' component={'span'} />
+
+                        <button type='submit'>Crear</button>
+                    </Form>
+                )
+                }
+
+            </Formik>
+
+
         </div>
     )
 }
