@@ -1,39 +1,30 @@
 
-import { ChangeEvent, useState } from 'react'
-import '../styles/custom-styles.css'
+import '../styles/styles.css'
+import { useRegisterForm } from '../../hooks/useRegisterForm'
+import { FormEvent } from 'react'
+
 
 export const Forms = () => {
 
-    const [registerData, setRegisterData] = useState({
+    const {formData, onChange, resetForm, isValidEmail, name, email, password1, password2 } = useRegisterForm({
         name: '',
         email: '',
         password1: '',
         password2: ''
-    })
+    })    
 
-    const {name, email, password1, password2} = registerData
-    
-
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        
-        setRegisterData( prev => ({
-            ...prev,
-            [event.target.name]: event.target.value
-        }))
-
-    }
-
-    const onSudmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const onSudmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(registerData)
+        console.log(formData)
     }
 
     return (
         <div>
-            <h1>Forms Page</h1>
+            <h1>Form Custom</h1>
             <hr />     
             <form
-                onSubmit={ (ev) => onSudmit(ev) }
+                noValidate
+                onSubmit={ (ev) => onSudmit(ev) }              
             >
                 <input
                     type='text'
@@ -41,7 +32,10 @@ export const Forms = () => {
                     name='name'
                     value={name}
                     onChange={ onChange }
+                    className={`${ name.trim().length <= 0 && 'has-error'}`}
+                    autoComplete="new-name"
                 />
+                { (name.trim().length <= 0 && <span>Campo requerido</span> ) }
                 <input
                     type='email'
                     placeholder='Email'
@@ -49,6 +43,7 @@ export const Forms = () => {
                     value={email}
                     onChange={ onChange }
                 />
+                { !isValidEmail(email) && <span>Email no es valido</span> }
                 <input
                     type='password'
                     placeholder='Password 1'
@@ -64,6 +59,7 @@ export const Forms = () => {
                     onChange={ onChange }
                 />
                 <button type='submit'>Crear</button>
+                <button type='button' onClick={resetForm}>Reset</button>
             </form>
         </div>
     )
