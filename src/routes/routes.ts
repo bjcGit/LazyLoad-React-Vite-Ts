@@ -6,6 +6,8 @@ import { FormFormik } from "../pages/Forms/FormFormik"
 import { Forms } from "../pages/Forms/Forms"
 import { FormFormikYup } from "../pages/Forms/FormFormikYup"
 import { FormFormikComponents } from "../pages/Forms/FormFormikComponents"
+import { FormikAbstraction } from "../pages/Forms/FormikAbstraction"
+import { DynamicForm } from "../pages/Forms/DynamicForm"
 
 type JSXComponent = () => JSX.Element
 
@@ -55,7 +57,7 @@ export const routes: Route[] = [
         to: './formFormikBasic',
         path: 'formFormikBasic',
         Component: FormFormik,
-        name: 'Form Formik Basic'
+        name: 'Register Formik Basic'
     },
     {
         to: './formFormikYup',
@@ -68,6 +70,18 @@ export const routes: Route[] = [
         path: 'formFormikComponentes',
         Component: FormFormikComponents,
         name: 'Form an Yup Components'
+    },
+    {
+        to: './formikAbstraction',
+        path: 'formikAbstraction',
+        Component: FormikAbstraction,
+        name: 'Formik Abstraction'
+    },
+    {
+        to: './dynamicForm',
+        path: 'dynamicForm',
+        Component: DynamicForm,
+        name: 'Formik Dynamic'
     },
 
 ]

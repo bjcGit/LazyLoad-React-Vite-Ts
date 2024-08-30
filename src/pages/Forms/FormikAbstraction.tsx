@@ -1,8 +1,11 @@
-import { Field, Form, ErrorMessage, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import '../styles/styles.css'
+import { FormCheckbox, SelectInputForm, TextInputForm } from '../../components/FormsComponents'
 
-export const FormFormikComponents = () => {
+
+
+export const FormikAbstraction = () => {
 
     return (
         <div>
@@ -35,22 +38,19 @@ export const FormFormikComponents = () => {
                 }>
 
                 {() => (
-                    <Form>
-                        <label htmlFor="firstName"> First Name</label>
-                        <Field type='text' autoComplete="new" name='name' />
-                        <ErrorMessage name='name' component={'span'} />
+                    <Form noValidate>
+                        <TextInputForm label="First Name" name="name" />
 
-                        <label htmlFor="email"> Email</label>
-                        <Field type='text' autoComplete="new" name='email' />
-                        <ErrorMessage name='email' component={'span'} />
+                        <TextInputForm label="Email" name="email" />
+                                          
+                        <SelectInputForm label='Job Type' name='jobtype'>
+                            <option value={''}>-</option>
+                            <option value={'Ca'}>Ca</option>
+                            <option value={'Ye'}>Ye</option>
+                            <option value={'Se'}>Se</option>
+                        </SelectInputForm>                      
 
-                        <label htmlFor="firstName"> First Name</label>
-                        <Field type='text' autoComplete="new" name='name' />
-                        <ErrorMessage name='name' component={'span'} />
-
-                        <label htmlFor="firstName"> First Name</label>
-                        <Field type='text' autoComplete="new" name='name' />
-                        <ErrorMessage name='name' component={'span'} />
+                        <FormCheckbox label={'Term'} name={'terms'}  />                       
 
                         <button type='submit'>Crear</button>
                     </Form>

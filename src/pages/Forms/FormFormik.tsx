@@ -43,7 +43,7 @@ export const FormFormik = () => {
 
     return (
         <div>
-            <h1>Form Formik Basic</h1>
+            <h1>Register Form</h1>
 
             <form
                 noValidate
